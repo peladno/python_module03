@@ -1,13 +1,15 @@
 import sys
 
 print("=== Command Quest ===")
-path, *arg = sys.argv
-arg_len = len(sys.argv) 
+path, *args = sys.argv
+argc = len(sys.argv)
 print(f"Program name: {path}")
-if arg_len == 1:
+if argc == 1:
     print("No argument provided!")
 else:
-    print(f"Arguments received {arg_len - 1}")
-for i in range(len(arg)):
-    print(f"Argument {i + 1}: {arg[i]}")
-print(f"Total arguments: {arg_len}")
+    print(f"Arguments received {argc - 1}")
+i = 0
+for data in args:
+    print(f"Argument {i + 1}: {data}")
+    i += 1
+print(f"Total arguments: {argc}")
