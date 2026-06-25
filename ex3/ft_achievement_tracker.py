@@ -54,7 +54,14 @@ def main() -> None:
         others = set.union(*(o.achievements for o in players if o != p))
         only_this = p.achievements.difference(others)
         print(f"Only {p.name} has:", only_this)
-    print()
+    # for p in players:
+    #     others = set()
+    #     for o in players:
+    #         if o != p:
+    #             others = others.union(o.achievements)
+    #     only_this = p.achievements.difference(others)
+    #     print(f"Only {p.name} has:", only_this)
+    # print()
     for p in players:
         missing = all_unique.difference(p.achievements)
         print(f"{p.name} is missing:", missing)
