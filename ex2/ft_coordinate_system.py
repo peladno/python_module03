@@ -11,7 +11,7 @@ def get_player_pos() -> tuple[float, float, float]:
             print("Invalid syntax")
             continue
 
-        values = []
+        values: list[float] = []
 
         try:
             for coord in coords:
@@ -23,11 +23,7 @@ def get_player_pos() -> tuple[float, float, float]:
             )
             continue
 
-        return tuple(values)
-
-
-def distance_2_center(x: float, y: float, z: float) -> float:
-    return round(math.sqrt(x**2 + y**2 + z**2), 4)
+        return (values[0], values[1], values[2])
 
 
 def calculate_distance() -> None:

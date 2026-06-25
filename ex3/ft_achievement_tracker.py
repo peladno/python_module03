@@ -13,7 +13,8 @@ achievements = [
     'Collector Supreme',
     'Untouchable',
     'Sharp Mind',
-    'Boss Slayer'
+    'Boss Slayer',
+    'Hidden Path Finder'
 ]
 
 
@@ -28,10 +29,36 @@ def gen_player_achievements() -> set[str]:
     return set(random.sample(achievements, random_numb))
 
 
-player1 = Player("Charlie", gen_player_achievements())
-player2 = Player("Bob", gen_player_achievements())
-player3 = Player("Alice", gen_player_achievements())
-player4 = Player("Dylan", gen_player_achievements())
+def main() -> None:
+
+    players = [
+        Player("Alice", gen_player_achievements()),
+        Player("Bob", gen_player_achievements()),
+        Player("Charlie", gen_player_achievements()),
+        Player("Dylan", gen_player_achievements())
+    ]
+
+    all_unique = set.union(*(p.achievements for p in players))
+
+    shared = set.intersection(*(p.achievements for p in players))
+
+    print("=== Achievement Tracker System ===")
+    for p in players:
+        print(f"Player {p.name}: {p.achievements}")
+    print()
+    print("All distinct achievements:", all_unique)
+    print()
+    print("Common achievements:", shared)
+    print()
+    for p in players:
+        others = set.union(*(o.achievements for o in players if o != p))
+        only_this = p.achievements.difference(others)
+        print(f"Only {p.name} has:", only_this)
+    print()
+    for p in players:
+        missing = all_unique.difference(p.achievements)
+        print(f"{p.name} is missing:", missing)
+
 
 if __name__ == "__main__":
-    print("=== Achievement Tracker System ===")
+    main()
