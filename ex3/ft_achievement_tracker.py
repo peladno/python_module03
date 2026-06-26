@@ -20,27 +20,31 @@ achievements = [
 
 class Player:
     def __init__(self, name: str, achievements: set[str]):
-        self.name = name
-        self.achievements = achievements
+        self.name: str = name
+        self.achievements: set[str] = achievements
 
 
 def gen_player_achievements() -> set[str]:
-    random_numb = random.randrange(1, len(achievements))
+    random_numb = random.randrange(3, 11)
     return set(random.sample(achievements, random_numb))
 
 
 def main() -> None:
 
-    players = [
+    players: list[Player] = [
         Player("Alice", gen_player_achievements()),
         Player("Bob", gen_player_achievements()),
         Player("Charlie", gen_player_achievements()),
         Player("Dylan", gen_player_achievements())
     ]
 
-    all_unique = set.union(*(p.achievements for p in players))
+    all_unique = set[str]().union(*(p.achievements for p in players))
 
-    shared = set.intersection(*(p.achievements for p in players))
+    if players:
+        shared = set[str]().intersection(
+            *(p.achievements for p in players))
+    else:
+        shared: set[str] = set()
 
     print("=== Achievement Tracker System ===")
     for p in players:
@@ -50,10 +54,13 @@ def main() -> None:
     print()
     print("Common achievements:", shared)
     print()
+
     for p in players:
-        others = set.union(*(o.achievements for o in players if o != p))
+        others = set[str]().union(
+            *(o.achievements for o in players if o != p))
         only_this = p.achievements.difference(others)
         print(f"Only {p.name} has:", only_this)
+
     # for p in players:
     #     others = set()
     #     for o in players:
