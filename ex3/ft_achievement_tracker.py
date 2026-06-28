@@ -25,7 +25,7 @@ class Player:
 
 
 def gen_player_achievements() -> set[str]:
-    random_numb = random.randrange(3, 11)
+    random_numb = random.randrange(5, 9)
     return set(random.sample(achievements, random_numb))
 
 
@@ -40,11 +40,10 @@ def main() -> None:
 
     all_unique = set[str]().union(*(p.achievements for p in players))
 
+    shared: set[str] = set()
     if players:
         shared = set[str]().intersection(
             *(p.achievements for p in players))
-    else:
-        shared: set[str] = set()
 
     print("=== Achievement Tracker System ===")
     for p in players:
@@ -61,14 +60,6 @@ def main() -> None:
         only_this = p.achievements.difference(others)
         print(f"Only {p.name} has:", only_this)
 
-    # for p in players:
-    #     others = set()
-    #     for o in players:
-    #         if o != p:
-    #             others = others.union(o.achievements)
-    #     only_this = p.achievements.difference(others)
-    #     print(f"Only {p.name} has:", only_this)
-    # print()
     for p in players:
         missing = all_unique.difference(p.achievements)
         print(f"{p.name} is missing:", missing)
