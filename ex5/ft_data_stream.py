@@ -5,12 +5,14 @@ PLAYERS = ["alice", "bob", "charlie", "dylan"]
 ACTIONS = ["run", "eat", "sleep", "grab", "move", "climb", "swim", "release"]
 
 
-def gen_event() -> Generator[tuple[str, str]]:
+def gen_event() -> Generator[tuple[str, str], None, None]:
     while True:
         yield (random.choice(PLAYERS), random.choice(ACTIONS))
 
 
-def rm_events(events: list[tuple[str, str]]) -> Generator[tuple[str, str]]:
+def rm_events(
+        events: list[tuple[str, str]]
+        ) -> Generator[tuple[str, str], None, None]:
     while len(events) > 0:
         choosed = random.choice(events)
         events.remove(choosed)
