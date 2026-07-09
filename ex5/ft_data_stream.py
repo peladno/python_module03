@@ -10,7 +10,7 @@ def gen_event() -> Generator[tuple[str, str], None, None]:
         yield (random.choice(PLAYERS), random.choice(ACTIONS))
 
 
-def rm_events(
+def consume_event(
         events: list[tuple[str, str]]
         ) -> Generator[tuple[str, str], None, None]:
     while len(events) > 0:
@@ -29,7 +29,7 @@ def main() -> None:
     data: list[tuple[str, str]] = [next(g) for _ in range(10)]
     print("Built list of 10 events: ", data)
 
-    for e in rm_events(data):
+    for e in consume_event(data):
         print("Got event from list: ", e)
         print("Remains in list; ", data)
 
